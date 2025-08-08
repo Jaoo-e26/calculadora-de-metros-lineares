@@ -72,11 +72,11 @@
     <label for="volume">Volume (m³):</label>
     <input type="number" id="volume" step="0.01" placeholder="Ex: 2.5" />
 
-    <label for="altura">Altura da peça (m):</label>
-    <input type="number" id="altura" step="0.01" placeholder="Ex: 0.05" />
+    <label for="altura">Altura da peça (cm):</label>
+    <input type="number" id="altura" step="0.1" placeholder="Ex: 5" />
 
-    <label for="largura">Largura da peça (m):</label>
-    <input type="number" id="largura" step="0.01" placeholder="Ex: 0.15" />
+    <label for="largura">Largura da peça (cm):</label>
+    <input type="number" id="largura" step="0.1" placeholder="Ex: 15" />
 
     <button onclick="calcularMetrosLineares()">Calcular</button>
 
@@ -86,14 +86,18 @@
   <script>
     function calcularMetrosLineares() {
       const volume = parseFloat(document.getElementById("volume").value);
-      const altura = parseFloat(document.getElementById("altura").value);
-      const largura = parseFloat(document.getElementById("largura").value);
+      const alturaCm = parseFloat(document.getElementById("altura").value);
+      const larguraCm = parseFloat(document.getElementById("largura").value);
       const resultadoDiv = document.getElementById("resultado");
 
-      if (!volume || !altura || !largura || altura <= 0 || largura <= 0) {
+      if (!volume || !alturaCm || !larguraCm || alturaCm <= 0 || larguraCm <= 0) {
         resultadoDiv.textContent = "Por favor, insira valores válidos.";
         return;
       }
+
+      // Convertendo de cm para m
+      const altura = alturaCm / 100;
+      const largura = larguraCm / 100;
 
       const metrosLineares = volume / (altura * largura);
       resultadoDiv.textContent = `Resultado: ${metrosLineares.toFixed(2)} metros lineares`;
