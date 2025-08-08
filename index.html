@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora de Metros Lineares</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #2d2d2d;
+    }
+
+    .container {
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      background: #28a745;
+      border: none;
+      color: white;
+      font-size: 1em;
+      width: 100%;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #218838;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #333;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Calculadora de Metros Lineares</h1>
+  <div class="container">
+    <label for="volume">Volume (m³):</label>
+    <input type="number" id="volume" step="0.01" placeholder="Ex: 2.5" />
+
+    <label for="altura">Altura da peça (m):</label>
+    <input type="number" id="altura" step="0.01" placeholder="Ex: 0.05" />
+
+    <label for="largura">Largura da peça (m):</label>
+    <input type="number" id="largura" step="0.01" placeholder="Ex: 0.15" />
+
+    <button onclick="calcularMetrosLineares()">Calcular</button>
+
+    <div class="result" id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularMetrosLineares() {
+      const volume = parseFloat(document.getElementById("volume").value);
+      const altura = parseFloat(document.getElementById("altura").value);
+      const largura = parseFloat(document.getElementById("largura").value);
+      const resultadoDiv = document.getElementById("resultado");
+
+      if (!volume || !altura || !largura || altura <= 0 || largura <= 0) {
+        resultadoDiv.textContent = "Por favor, insira valores válidos.";
+        return;
+      }
+
+      const metrosLineares = volume / (altura * largura);
+      resultadoDiv.textContent = `Resultado: ${metrosLineares.toFixed(2)} metros lineares`;
+    }
+  </script>
+</body>
+</html>
